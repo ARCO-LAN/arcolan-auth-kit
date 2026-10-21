@@ -4,10 +4,14 @@ version = "0.1.0"
 description = "Package Python partagé entre les backends Arcolan : validation JWT, clients, rôles"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "fastapi>=0.115",
+    "PyJWT[crypto]>=2.9",
+]
 
 [dependency-groups]
 dev = [
+    "httpx2",
     "pytest>=8",
     "ruff>=0.6",
 ]
