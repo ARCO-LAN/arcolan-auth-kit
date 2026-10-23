@@ -9,13 +9,20 @@ Architecture, décisions et plan de réalisation : [arcolan-platform-docs](https
 
 ## Installation dans un backend
 
-Le package est versionné par tags git et installé à une version fixe :
+Le package est installé depuis git, épinglé à un commit précis (un tag remplacera le commit
+quand il en existera un). La dépendance est déclarée par son nom et la source dans
+`[tool.uv.sources]` : hatchling refuse les références git directes dans `dependencies`.
 
 ```toml
 dependencies = [
-    "arcolan-auth-kit @ git+https://github.com/ARCO-LAN/arcolan-auth-kit@v0.1.0",
+    "arcolan-auth-kit",
 ]
+
+[tool.uv.sources]
+arcolan-auth-kit = { git = "https://github.com/ARCO-LAN/arcolan-auth-kit", rev = "<commit>" }
 ```
+
+Un changement d'API publique impose de remonter ce `rev` dans chaque backend qui utilise le kit.
 
 ## Validation des tokens
 
